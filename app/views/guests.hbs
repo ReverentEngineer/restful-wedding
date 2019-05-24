@@ -1,0 +1,71 @@
+{{ userMessage }}
+
+<form method="post" action="{{path}}/admin/guests">
+  <div class="form-row" style="padding: 30px 0;">
+    <div class="col-sm-4">
+      <input type="text" class="form-control" id="name" name="name" placeholder="Guest Name" required>
+    </div>
+    <div class="col-sm-4">
+      <input type="email" class="form-control" id="email" name="email" placeholder="E-Mail">
+    </div>
+    <div class="col-sm-3">
+      <select name="household" id="household" class="form-control" required>
+        <option value="" disabled selected>Select a household</option>
+        {{#each households}}
+        <option value="{{this.id}}">{{this.name}}</option>
+        {{/each}}
+      </select>
+    </div>
+
+    <div class="col-sm-1">
+      <button type="submit" class="btn btn-primary" name="action" value="add">Add Guest</button>
+    </div>
+    <div class="col-sm-3">
+      <select name="rehearsal_dinner" id="rehearsal_dinner" class="form-control" required>
+        <option value="" disabled selected>Rehearal dinner?</option>
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+      </select>
+    </div>
+    <div class="col-sm-3">
+      <select name="meal" id="meal" class="form-control" required>
+        <option value="" disabled selected>Which meal?</option>
+        {{#each meals}}
+        <option value="{{this.id}}">{{this.name}}</option>
+        {{/each}}
+      </select>
+    </div>
+  </div>
+</form>
+
+<input type="text" id="search-box" placeholder="Search for guests"  onkeyup="searchTable()" />
+
+<form method="post" action="{{path}}/admin/guests">
+  <button class="btn btn-danger" name="action" type="submit" value="delete" style="margin: 20px;">Delete Guest(s)</button>
+  <table class="table table-striped" id="search-table">
+  <thead>
+    <tr>
+      <th scope="col">Select</th>
+      <th scope="col">Name</th>
+      <th scope="col">E-mail</th>
+      <th scope="col">Household Name</th>
+      <th scope="col">Meal Name</th>
+      <th scope="col">Rehearsal Dinner</th>
+      <th scope="col">Attending</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each guests }}
+    <tr>
+      <td><input type="checkbox" name="id[]" value="{{this.id}}"></td>
+      <td class="search-item">{{this.name}}</td>
+      <td>{{this.email}}</td>
+      <td class="search-item">{{this.household.name}}</td>
+      <td>{{this.meal.name}}</td>
+      <td>{{#if this.rehearsal_dinner}}Yes{{else}}No{{/if}}</td>
+      <td>{{#if this.attending}}Yes{{else}}No{{/if}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+</form>

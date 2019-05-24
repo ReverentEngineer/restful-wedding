@@ -1,0 +1,45 @@
+{
+  "name": "rsvp-endpoint",
+  "version": "1.0.0",
+  "description": "An endpoint for interacting with RSVPs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ReverentEngineer/wedding.git"
+  },
+  "keywords": [
+    "rsvp",
+    "guests",
+    "invites"
+  ],
+  "author": "Jeffrey Hill <jeff@reverentengineer.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ReverentEngineer/wedding/issues"
+  },
+  "homepage": "https://github.com/ReverentEngineer/wedding#readme",
+  "dependencies": {
+    "async": "^2.6.2",
+    "config": "^3.0.1",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.6",
+    "flash": "^1.1.0",
+    "handlebars": "^4.1.0",
+    "http-errors": "^1.7.1",
+    "morgan": "^1.9.1",
+    "nodemailer": "^5.1.1",
+    "parallel": "^1.2.0",
+    "passport": "^0.4.0",
+    "passport-github": "^1.1.0",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7",
+    "sequelize": "^4.42.0",
+    "sqlite3": "^4.0.8"
+  }
+}

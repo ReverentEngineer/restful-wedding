@@ -1,0 +1,20 @@
+<span>
+  Mail sent from: <span style="font-weight: bold;">{{mailFrom}}</span>
+</span>
+
+<form method="post" action="{{path}}/admin/message">
+  <div class="form-row" style="padding: 30px 0;">
+    <div class="col-sm-5">
+      <input type="text" class="form-control" id="name" name="subject" placeholder="Subject">
+    </div>
+  <div class="col-sm-7">
+  </div>
+  <div class="col-sm-12">
+    <textarea rows="8" cols="50" name="body" placeholder="Message"></textarea>
+  </div>
+  <div class="col-sm-1">
+    <button type="submit" class="btn btn-primary">Send</button>
+  </div>
+  </div>
+</form>
+

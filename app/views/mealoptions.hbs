@@ -1,0 +1,30 @@
+<form method="post" action="{{path}}/admin/mealoptions">
+  <div class="form-row" style="padding: 30px 0;">
+    <div class="col-sm-3">
+      <input type="text" class="form-control" id="name" name="name" placeholder="Meal Name">
+    </div>
+    <div class="col-sm-8">
+      <input type="text" class="form-control" id="description" name="description" placeholder="Meal Description">
+    </div>
+    <div class="col-sm-1">
+      <button type="submit" class="btn btn-primary" name="action" value="add">Add Meal Option</button>
+    </div>
+  </div>
+<table class="table">
+  <button class="btn btn-danger" name="action" type="submit" value="delete">Delete Meal Option(s)</button>
+  <thead>
+    <tr class="d-flex">
+      <th class="col-3">Name</th>
+      <th class="col-9">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each meal_options }}
+    <tr class="d-flex">
+      <td class="col-3"><input type="checkbox" name="id[]" value="{{this.id}}" style="margin-right: 4px;">{{this.name}}</td>
+      <td class="col-9">{{this.description}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+</form>

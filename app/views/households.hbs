@@ -1,0 +1,37 @@
+<form method="post" action="{{path}}/admin/households">
+  <div class="form-row" style="padding: 30px 0;">
+    <div class="col-sm-4">
+      <input type="text" class="form-control" id="name" name="name" placeholder="Household Name" required>
+    </div>
+    <div class="col-sm-1">
+      <button type="submit" class="btn btn-primary" name="action" value="add">Add Household</button>
+    </div>
+    <div class="col-sm-7">
+    </div>
+  </div>
+</form>
+
+<input type="text" id="search-box" placeholder="Search for households"  onkeyup="searchTable()" />
+
+<form method="post" action="{{path}}/admin/households">
+  <button class="btn btn-danger" name="action" type="submit" value="delete">Delete Household(s)</button>
+  <table class="table table-striped" id="search-table">
+    <thead>
+      <tr>
+        <th class="col-4">Name</th>
+        <th class="col-2">Passcode</th>
+        <th class="col-6">Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each households }}
+      <tr>
+        <td class="col-4 search-item"><input type="checkbox" name="id[]" value="{{this.id}}" style="margin-right: 4px;">{{this.name}}</td>
+        <td class="col-2">{{this.passcode}}</td>
+        <td class="col-6">{{this.notes}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</form>
+

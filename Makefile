@@ -10,4 +10,7 @@ app/node_modules:
 run: app/node_modules
 	cd app && NODE_ENV=development ./bin/www
 
-.PHONY: run
+push: build
+	docker push $(DOCKER_TAG)
+
+.PHONY: run push build

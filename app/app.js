@@ -10,7 +10,6 @@ var db           = require('./models/db');
 const crypto     = require('crypto')
 const config     = require('config')
 
-
 var app = express();
 db.initialize();
 const buf = Buffer.alloc(16);
@@ -55,7 +54,7 @@ app.use(function(req, res, next) {
 
 app.use(function(err, req, res, next) {
     res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    res.locals.error = req.app.get('env') != 'production' ? err : {};
 
     res.status(err.status || 500);
     res.render('error',  {  status: err.status, message: err.message, layout: 'noauth' });

@@ -2,6 +2,10 @@ const config = require('config');
 const Sequelize = require('sequelize');
 
 var dbstorage = process.env.WEDDING_DB || './wedding.db';
+if (process.env.NODE_ENV == 'development') {
+    dbstorage = ':memory:'
+}
+
 
 const sequelize = new Sequelize({
     dialect: 'sqlite',

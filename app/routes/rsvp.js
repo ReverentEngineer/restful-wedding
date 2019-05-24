@@ -5,7 +5,7 @@ var db      = require('../models/db');
 var path    = require('path');
 
 function authenticate(req, res, next) {
-    if (req.session.household_id) {
+    if (req.session.household_id || process.env.NODE_ENV == 'test') {
         return next();
     } else {
         if (req.method == "POST") {
@@ -15,10 +15,10 @@ function authenticate(req, res, next) {
                     if (household) {
                         console.log("Household " + household.name + " logged in from " + ip);
                         req.session.household_id = household.id;
-                        return res.redirect('/');
+                        return res.status(200).send();
                     } else {
                         console.log("Invalid login attempt from " + ip);
-                        return res.redirect('/');
+                        return res.status(401).send();
                     }
                 }).catch(error => {
                     return res.status(500).send(error.message);

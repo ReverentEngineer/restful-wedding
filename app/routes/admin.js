@@ -6,7 +6,7 @@ const async = require('async');
 const Op = require('sequelize').Op;
 
 router.use(function (req, res, next) {
-    if (req.app.get('env') === 'development') {
+    if (req.app.get('env') == 'developmeny') {
         return next();
     } else {
         return passpost.authenticate('github');

@@ -4,7 +4,9 @@
   "description": "An endpoint for interacting with RSVPs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "NODE_ENV=production ./bin/www",
+    "dev": "NODE_ENV=development ./bin/www",
+    "test": "NODE_ENV=development mocha ./tests --recursive"
   },
   "repository": {
     "type": "git",
@@ -39,7 +41,12 @@
     "passport-github": "^1.1.0",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
-    "sequelize": "^4.42.0",
+    "sequelize": "^4.44.0",
     "sqlite3": "^4.0.8"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "mocha": "^6.1.4"
   }
 }

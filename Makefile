@@ -13,4 +13,7 @@ run: app/node_modules
 push: build
 	docker push $(DOCKER_TAG)
 
-.PHONY: run push build
+test: app/node_modules
+	cd app && npm test
+
+.PHONY: run push build test 

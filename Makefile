@@ -1,19 +1,20 @@
 DOCKER_TAG=reverentengineer/restful_wedding
-TEST_NAME=restful_wedding_test
 
-build:
-	docker build -t $(DOCKER_TAG) .
+all: build
 
-app/node_modules:
-	cd app && npm install
+node_modules:
+	npm install
 
-run: app/node_modules
-	cd app && NODE_ENV=development ./bin/www
+test: node_modules
+	npm test
+
+build: test
+	docker build -t $(DOCKER_TAG):latest .
 
 push: build
-	docker push $(DOCKER_TAG)
+	docker push $(DOCKER_TAG):latest
 
-test: app/node_modules
-	cd app && npm install --only=dev && npm test
+publish: test
+	npm publish
 
-.PHONY: run push build test 
+.PHONY: prepare build test deploy

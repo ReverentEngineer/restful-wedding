@@ -1,6 +1,8 @@
 FROM node:alpine
 LABEL maintainer="jeff@reverentengineer.com"
-ENV NODE_ENV production
-ADD ./app .
-RUN npm install .
-CMD ["/bin/sh", "-c", "./bin/www"]
+WORKDIR /usr/src/app
+COPY package*.json ./
+RUN npm install
+ADD . .
+EXPOSE 3000
+CMD [ "npm", "start" ]

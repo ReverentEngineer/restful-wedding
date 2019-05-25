@@ -5,4 +5,4 @@ node_js:
   - "node"
 before_install:
   - docker build -t reverentengineer/restful_wedding .
-  - docker run reverentengineer/restful_Wedding /bin/sh -c "npm install && npm test"
+  - docker run reverentengineer/restful_wedding /bin/sh -c "npm install && npm test"

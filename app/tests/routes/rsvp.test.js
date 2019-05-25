@@ -65,6 +65,28 @@ describe('RSVP Route', function() {
                     .end((err, res, body) => {
                         res.should.have.status(200);
                         expect(res).to.be.json;
+                        done();
+                    })
+            });
+    });
+
+    it('RSVP get current data', (done) => {
+        chai.request(app)
+            .post('/rsvp')
+            .type('form')
+            .send({
+                'inputPasscode': 'passcode'
+            })
+            .end((err, res, body) => {
+                res.should.have.status(200);
+                res.body.should.be.a('object');
+                expect(res).to.have.cookie('connect.sid');
+                chai.request(app)
+                    .get('/rsvp')
+                    .set('Cookie', res.headers['set-cookie'][0])
+                    .end((err, res, body) => {
+                        res.should.have.status(200);
+                        expect(res).to.be.json;
                         expect(res.body.notes).to.equal('Here are my notes');
                         expect(res.body.guests).to.have.lengthOf(1);
                         expect(res.body.guests[0].id).to.equal(1)
@@ -75,6 +97,44 @@ describe('RSVP Route', function() {
                     })
             });
     });
+
+    it('RSVP put new data', (done) => {
+        chai.request(app)
+            .post('/rsvp')
+            .type('form')
+            .send({
+                'inputPasscode': 'passcode'
+            })
+            .end((err, res, body) => {
+                res.should.have.status(200);
+                res.body.should.be.a('object');
+                expect(res).to.have.cookie('connect.sid');
+                var cookie = res.headers['set-cookie'][0];
+                chai.request(app)
+                    .post('/rsvp')
+                    .set('Cookie', cookie)
+                    .send({ guests: [ { attending: false } ] })
+                    .end((err, res, body) => {
+                        res.should.have.status(200);
+                         
+                        chai.request(app)
+                            .get('/rsvp')
+                            .set('Cookie', cookie)
+                            .end((err, res, body) => {
+                                res.should.have.status(200);
+                                expect(res).to.be.json;
+                                expect(res.body.notes).to.equal('Here are my notes');
+                                expect(res.body.guests).to.have.lengthOf(1);
+                                expect(res.body.guests[0].id).to.equal(1)
+                                expect(res.body.guests[0].name).to.equal('Guest A')
+                                expect(res.body.guests[0].attending).to.equal(false)
+                                expect(res.body.guests[0].email).to.equal('guest@example.com')
+                                done();
+                            })
+                    });
+            });
+    });
+
 
 
 });

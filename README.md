@@ -1,4 +1,6 @@
-# Our wedding site
+# restful_wedding
+
+[![Build Status](https://travis-ci.org/ReverentEngineer/restful-wedding.svg?branch=master)](https://travis-ci.org/ReverentEngineer/restful-wedding)
 
 A node.js wedding RSVP endpoint
 

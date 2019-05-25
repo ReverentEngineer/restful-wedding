@@ -8,6 +8,9 @@
     "dev": "NODE_ENV=development ./bin/www",
     "test": "NODE_ENV=development mocha ./tests --recursive"
   },
+  "bin": {
+    "wedding-rsvp": "bin/www"
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/ReverentEngineer/wedding.git"

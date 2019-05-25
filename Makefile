@@ -14,6 +14,6 @@ push: build
 	docker push $(DOCKER_TAG)
 
 test: app/node_modules
-	cd app && npm test
+	cd app && npm install --only=dev && npm test
 
 .PHONY: run push build test 

@@ -41,7 +41,7 @@
     "passport-github": "^1.1.0",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
-    "sequelize": "^4.44.0",
+    "sequelize": "^5.8.6",
     "sqlite3": "^4.0.8"
   },
   "devDependencies": {

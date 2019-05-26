@@ -9,7 +9,7 @@ router.use(function (req, res, next) {
     if (req.app.get('env') == 'developmeny') {
         return next();
     } else {
-        return passpost.authenticate('github');
+        return passport.authenticate('github');
     }
 })
 

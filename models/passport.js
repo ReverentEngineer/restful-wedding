@@ -9,7 +9,7 @@ function initPassport(db) {
     passport.use(new GitHubStrategy({
         clientID: config.get('github_client_id'),
         clientSecret: config.get('github_client_secret'),
-        callbackURL: config.get('github_callback_url')
+        callbackURL: '/auth/github/callback'
     },
         function(accessToken, refreshToken, profile, cb) {
             if (admins.indexOf(profile.username) > -1) {

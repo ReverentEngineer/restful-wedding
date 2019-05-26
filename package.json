@@ -1,5 +1,5 @@
 {
-  "name": "rsvp-endpoint",
+  "name": "restful-wedding",
   "version": "1.0.0",
   "description": "An endpoint for interacting with RSVPs",
   "main": "index.js",
@@ -23,9 +23,9 @@
   "author": "Jeffrey Hill <jeff@reverentengineer.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ReverentEngineer/wedding/issues"
+    "url": "https://github.com/ReverentEngineer/restful-wedding/issues"
   },
-  "homepage": "https://github.com/ReverentEngineer/wedding#readme",
+  "homepage": "https://github.com/ReverentEngineer/restful-wedding#readme",
   "dependencies": {
     "async": "^2.6.2",
     "config": "^3.0.1",

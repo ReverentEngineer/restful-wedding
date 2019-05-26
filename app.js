@@ -18,7 +18,16 @@ app.use(session({ secret: buf.toString('hex'), resave: false, saveUninitialized:
 if (process.env.NODE_ENV != "development") {
     const passport   = require('./models/passport')(db);
     app.use(passport.initialize());
+    app.get('/auth/github',
+        passport.authenticate('github'));
+
+    app.get('/auth/github/callback', 
+        passport.authenticate('github'),
+        function(req, res) {
+            res.redirect('/admin');
+        });
 }
+
 app.use(flash());
 app.engine('.hbs', exphbs({defaultLayout: 'default', extname: '.hbs'}));
 app.set('views', path.join(__dirname, 'views'));
@@ -36,17 +45,6 @@ if (config.has('mailFrom')) {
 
 app.use("/admin", require('./routes/admin'));
 app.use("/rsvp", require('./routes/rsvp'));
-
-if (process.env.NODE_ENV != "development") {
-    app.get('/auth/github',
-        passport.authenticate('github'));
-
-    app.get('/auth/github/callback', 
-        passport.authenticate('github'),
-        function(req, res) {
-            res.redirect('/admin');
-        });
-}
 
 app.use(function(req, res, next) {
     next(createError(404));

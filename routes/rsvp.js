@@ -5,7 +5,7 @@ var db      = require('../models/db');
 var path    = require('path');
 
 function authenticate(req, res, next) {
-    if (req.session.household_id || process.env.NODE_ENV == 'test') {
+    if (req.session.household_id || process.env.NODE_ENV == 'development') {
         return next();
     } else {
         if (req.method == "POST") {

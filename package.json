@@ -1,6 +1,6 @@
 {
   "name": "restful-wedding",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "An endpoint for interacting with RSVPs",
   "main": "index.js",
   "scripts": {

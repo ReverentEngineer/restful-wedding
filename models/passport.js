@@ -1,5 +1,6 @@
 var passport = require('passport');
 const config = require('config');
+const db = require('./db')
 
 function initPassport(db) {
 
@@ -13,11 +14,12 @@ function initPassport(db) {
     },
         function(accessToken, refreshToken, profile, cb) {
             if (admins.indexOf(profile.username) > -1) {
-                User.findOrCreate({ githubId: profile.id }, function (err, user) {
-                    return done(err, user);
-                });
+                db.User.findOrCreate({ where: { githubId: profile.id } })
+                    .then(user => {
+                        return cb(null, user[0]);
+                    })
             } else {
-                return done(null, null);      
+                return cb(null, null);      
             }
         }
     ));
@@ -27,7 +29,7 @@ function initPassport(db) {
     }
 
     function deserialize(id, done) {
-        db.User.findById(id).then(user => {
+        db.User.findOne({ where: { id: id } }).then(user => {
             if (user) {
                 return done(null, { id: user.id });
             } else {

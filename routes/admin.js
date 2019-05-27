@@ -6,10 +6,12 @@ const async = require('async');
 const Op = require('sequelize').Op;
 
 router.use(function (req, res, next) {
-    if (req.app.get('env') == 'developmeny') {
+    if (req.app.get('env') == 'development') {
         return next();
+    } else if (req.isAuthenticated()) {
+        return next()
     } else {
-        return passport.authenticate('github');
+        return res.status(401).render('error', { message: 'Unauthorized' });
     }
 })
 
@@ -97,7 +99,6 @@ router.post('/guests', function (req, res) {
                 });
             });
         }).catch(error => {
-            console.log(error.message);
             res.locals.userMessage = error.message;
             return guestView(req, res);
         });

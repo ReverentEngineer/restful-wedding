@@ -18,6 +18,7 @@ app.use(session({ secret: buf.toString('hex'), resave: false, saveUninitialized:
 if (process.env.NODE_ENV != "development") {
     const passport   = require('./models/passport')(db);
     app.use(passport.initialize());
+    app.use(passport.session());
     app.get('/auth/github',
         passport.authenticate('github'));
 
@@ -26,8 +27,18 @@ if (process.env.NODE_ENV != "development") {
         function(req, res) {
             res.redirect('/admin');
         });
+    
+    app.get('/logout',
+        function (req, res) {
+            req.logout()
+            res.redirect('/admin')
+        })
 }
 
+app.use(function (req, res, next) {
+    res.locals.user = req.user
+    next();
+})
 app.use(flash());
 app.engine('.hbs', exphbs({defaultLayout: 'default', extname: '.hbs'}));
 app.set('views', path.join(__dirname, 'views'));

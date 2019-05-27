@@ -49,13 +49,20 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
+        {{#if user}}
           <a class="nav-item nav-link" href="{{path}}/admin/">Summary</a>
           <a class="nav-item nav-link" href="{{path}}/admin/guests">Guests</a>
           <a class="nav-item nav-link" href="{{path}}/admin/households">Households</a>
           <a class="nav-item nav-link" href="{{path}}/admin/mealoptions">Meal Options</a>
           <a class="nav-item nav-link" href="{{path}}/admin/message">Message</a>
+        {{/if}}
         </div>
       </div>
+      {{#if user}}
+      <span><a href="/logout"><button type="submit" class="btn btn-outline-danger navbar-btn login-btn">Log Out</button></a></span>
+      {{else}}
+      <span><a href="/auth/github"><button type="submit" class="btn btn-outline-success navbar-btn login-btn">Log In</button></a></span>
+      {{/if}}
     </nav>
 
     <div class="container">

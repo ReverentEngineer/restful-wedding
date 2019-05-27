@@ -1,3 +1,5 @@
 .travis.yml
 wedding.db
 Makefile
+.dockerignore
+Dockerfile

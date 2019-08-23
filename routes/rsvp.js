@@ -15,16 +15,16 @@ function authenticate(req, res, next) {
                     if (household) {
                         console.log("Household " + household.name + " logged in from " + ip);
                         req.session.household_id = household.id;
-                        return res.status(200).send();
+                        return res.redirect('/'); 
                     } else {
                         console.log("Invalid login attempt from " + ip);
-                        return res.status(401).send();
+                        return res.redirect('/'); 
                     }
                 }).catch(error => {
                     return res.status(500).send(error.message);
                 });
         } else { 
-            return res.status(401).send();
+            return res.redirect('/'); 
         }
     }
 }

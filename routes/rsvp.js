@@ -53,7 +53,9 @@ router.post('/', function (req, res) {
                 if ('guests' in req.body) {
                     for (var i = 0; (i < req.body.guests.length) && (i < household.guests.length); i++) {
                         household.guests[i].attending = req.body.guests[i].attending;
-                        household.guests[i].shuttle = request.body.guests[i].shuttle;
+                        if ('shuttle' in request.body.guests[i]) {
+                                household.guests[i].shuttle = request.body.guests[i].shuttle;
+                        }
                         household.guests[i].email = req.body.guests[i].email;
                         household.guests[i].save();
                     }

@@ -32,7 +32,7 @@ function authenticate(req, res, next) {
 router.use(authenticate);
 
 router.get('/', function(req, res) {
-    db.Household.findOne({ attributes: ['notes'], where: { id: req.session.household_id }, include: [{ model: db.Guest, attributes: ['id', 'name', 'attending', 'email'], include: [ { model: db.Meal, attributes: [ 'name', 'description'] } ] }] })
+    db.Household.findOne({ attributes: ['notes'], where: { id: req.session.household_id }, include: [{ model: db.Guest, attributes: ['id', 'name', 'shuttle', 'attending', 'email'], include: [ { model: db.Meal, attributes: [ 'name', 'description'] } ] }] })
         .then(household => {
             if (household) {
                 return res.json(household);
@@ -53,6 +53,7 @@ router.post('/', function (req, res) {
                 if ('guests' in req.body) {
                     for (var i = 0; (i < req.body.guests.length) && (i < household.guests.length); i++) {
                         household.guests[i].attending = req.body.guests[i].attending;
+                        household.guests[i].shuttle = request.body.guests[i].shuttle;
                         household.guests[i].email = req.body.guests[i].email;
                         household.guests[i].save();
                     }

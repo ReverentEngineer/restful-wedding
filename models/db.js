@@ -62,6 +62,9 @@ const Guest = sequelize.define('guest', {
     attending: {
         type: Sequelize.BOOLEAN
     },
+    shuttle: {
+        type: Sequelize.BOOLEAN,
+    },
     rehearsal_dinner: {
         type: Sequelize.BOOLEAN,
         allowNull: false

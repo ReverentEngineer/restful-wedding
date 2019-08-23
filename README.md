@@ -1,8 +1,7 @@
-# Our wedding site
+# restful-wedding
 
-A node.js wedding RSVP endpoint
+A RESTful wedding RSVP endpoint
 
 # How to run
 
 ./bin/www
-

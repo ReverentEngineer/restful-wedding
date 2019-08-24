@@ -7,6 +7,7 @@ const Op = require('sequelize').Op;
 
 router.use(function (req, res, next) {
     if (req.app.get('env') == 'development') {
+         res.locals.user = "admin"
         return next();
     } else if (req.isAuthenticated()) {
         return next()

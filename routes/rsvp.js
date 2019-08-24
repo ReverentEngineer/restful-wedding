@@ -24,7 +24,7 @@ function authenticate(req, res, next) {
                     return res.status(500).send(error.message);
                 });
         } else { 
-            return res.redirect('/'); 
+            return res.status(401).send();
         }
     }
 }
